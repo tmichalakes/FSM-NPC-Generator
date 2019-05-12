@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNGenerator", "FNGenerator\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNGenerator.Tests", "FNGenerator.Tests\FNGenerator.Tests.csproj", "{33458800-F910-4E8D-B06C-F3CEFF67592D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSM", "FSM\FSM.csproj", "{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{33458800-F910-4E8D-B06C-F3CEFF67592D}.Release|x64.Build.0 = Release|Any CPU
 		{33458800-F910-4E8D-B06C-F3CEFF67592D}.Release|x86.ActiveCfg = Release|Any CPU
 		{33458800-F910-4E8D-B06C-F3CEFF67592D}.Release|x86.Build.0 = Release|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Debug|x64.Build.0 = Debug|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Debug|x86.Build.0 = Debug|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Release|x64.ActiveCfg = Release|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Release|x64.Build.0 = Release|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Release|x86.ActiveCfg = Release|Any CPU
+		{F3441BD7-E2DD-4D31-BAC4-F399E922ECAB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
