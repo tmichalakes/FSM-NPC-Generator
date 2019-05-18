@@ -6,36 +6,41 @@ using FSM.Utilities;
 
 namespace FSM.States
 {
-    public class StateFactory<T> : IFactory {
-        public State<T> State { get {
+    public class StateFactory<S,T> : IFactory {
+        public State<S,T> State { get {
             var temp = _state;
-            _state = new State<T>();
+            _state = new State<S,T>();
             return temp;
         } }
-        private State<T> _state;
+        protected State<S,T> _state;
 
         public StateFactory () {
-            _state = new State<T>();
+            _state = new State<S,T>();
         }
 
-        public StateFactory<T> Name (String name){
-            _state.StateName = name;
+        public StateFactory<S,T> Name (String name){
+            _state.Name = name;
             return this;
         }
 
-        public StateFactory<T> Transition (string transitionName, Transition<T> transition) {
+        public StateFactory<S,T> Transition (string transitionName, Transition<S,T> transition) {
             _state.AddTransition(transitionName, transition);
             return this;
         }
 
-        public StateFactory<T> Transition (Transition<T> transition) {
+        public StateFactory<S,T> Transition (Transition<S,T> transition) {
             _state.AddTransition(transition);
+            return this;
+        }
+
+        public StateFactory<S,T> Value (S Value){
+            _state.Value = Value;
             return this;
         }
 
         public void Reset()
         {
-            _state = new State<T>();
+            _state = new State<S,T>();
         }
     }
 }

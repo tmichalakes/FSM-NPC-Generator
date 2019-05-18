@@ -3,10 +3,15 @@ using FSM.States;
 using FSM.Utilities;
 
 namespace FSM.Transitions {
-    public class TransitionFactory<T> : IFactory{
-        private Transition<T> _transition;
-        public State<T> DefaultState { get; set; }
-        public Transition<T> Transition {
+    public class TransitionFactory<S,T> : IFactory{
+        protected Transition<S,T> _transition;
+        public State<S,T> DefaultState { 
+            get => _defaultState; set{
+                _defaultState = value;
+                _transition.NextState = _defaultState;
+            } }
+        private State<S,T> _defaultState;
+        public Transition<S,T> Transition {
             get {
                 var temp = _transition;
                 CreateTransition();
@@ -18,24 +23,24 @@ namespace FSM.Transitions {
             CreateTransition();
         }
 
-        public TransitionFactory<T> Value (T value){
+        public TransitionFactory<S,T> Value (T value){
             _transition.Value = value;
             return this;
         }
 
-        public TransitionFactory<T> Name (string name){
+        public TransitionFactory<S,T> Name (string name){
             _transition.Name = name;
             return this;
         }
 
-        public TransitionFactory<T> NextState (State<T> nextState){
+        public TransitionFactory<S,T> NextState (State<S,T> nextState){
             _transition.NextState = nextState;
             return this;
         }
 
-        public void CreateTransition(){
-            _transition = new Transition<T>();
-            NextState(DefaultState);
+        protected void CreateTransition(){
+            _transition = new Transition<S,T>();
+            _transition.NextState = DefaultState;
         }
 
         public void Reset()
