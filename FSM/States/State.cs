@@ -8,6 +8,7 @@ namespace FSM.States
     public class State<T>
     {
         public string StateName { get; set; }
+        public int numTransitions { get => Transitions != null ? Transitions.Count : 0; }
         private Dictionary<string, Transition<T>> Transitions;
         
         public State (){
@@ -16,6 +17,10 @@ namespace FSM.States
         
         public void AddTransition(string transitionName, Transition<T> transition){
             Transitions.Add(transitionName, transition);
+        }
+
+        public void AddTransition(Transition<T> transition){
+            AddTransition(transition.Name, transition);
         }
 
         public State<T> NextState (ITrigger<T> Trigger){

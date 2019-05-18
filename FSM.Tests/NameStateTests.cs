@@ -1,11 +1,16 @@
 using System;
 using Xunit;
+using FSM.States;
+using FSM.Transitions;
+using FSM.Triggers;
 
 namespace FSM.Tests
 {
     public class NameStateTestFixture : IDisposable {
+        
+        StateFactory<double> sfDouble;
         public NameStateTestFixture() {
-
+            sfDouble = new StateFactory<double>();
         }
 
         public void Dispose() {
@@ -13,7 +18,7 @@ namespace FSM.Tests
         }
 
         public void Cleanup() {
-
+            sfDouble.Reset();
         }
     }
 
@@ -32,9 +37,20 @@ namespace FSM.Tests
         ///////// TESTS ////////////////////////
 
         [Fact]
-        public void Smoke()
-        {
-            Assert.True(true);
+        public void StateFactoryWorks(){
+            StateFactory<double> sf_double = new StateFactory<double>();
+            string testStateName = "testState";
+            string testTransitionName = "testTransition";
+            double testTransitionValue = 1.0;
+            var state = sf_double.Name(testStateName)
+                .Transition(testTransitionName, new Transition<double> {
+                    Name = testTransitionName,
+                    Value = testTransitionValue,
+                    NextState = null
+                }).State;
+
+            Assert.Equal(1, state.numTransitions);
+            Assert.Equal(testStateName, state.StateName);
         }
     }
 }
