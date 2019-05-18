@@ -5,13 +5,21 @@ using FSM.Triggers;
 
 namespace FSM.States
 {
-    public abstract class State<T> where T : Transition
+    public class State<T>
     {
-        public string Name { get; set; }
-        public IEnumerable<T> Transitions { get; set; }
+        public string StateName { get; set; }
+        private Dictionary<string, Transition<T>> Transitions;
+        
+        public State (){
+            Transitions = new Dictionary<string, Transition<T>>();
+        }
+        
+        public void AddTransition(string transitionName, Transition<T> transition){
+            Transitions.Add(transitionName, transition);
+        }
 
-        public ITrigger<T> Trigger { get; set; }
-
-        public abstract State<Transition> NextState();
+        public State<T> NextState (ITrigger<T> Trigger){
+            return Trigger.NextState(Transitions).NextState;
+        }
     }
 }

@@ -1,32 +1,25 @@
 using System;
 using System.Collections.Generic;
+using FSM.States;
 using FSM.Transitions;
 
 namespace FSM.Triggers {
-    public class StochasticTrigger : ITrigger<StochasticTransition> {
-
-        public Transition GetTransition(IEnumerable<StochasticTransition> set)
+    public class StochasticTrigger : ITrigger<double>
+    {
+        public Transition<double> NextState(Dictionary<string, Transition<double>> Transitions)
         {
-            double target = (new Random()).NextDouble() * GetRandRange(set);
-            double d = 0;
-            foreach(var s in set){
-                d += s;
-                if (d > target) return s;
+            double aggr = 0;
+            foreach(var t in Transitions){
+                aggr += t.Value.Value;
             }
-            throw new Exception("Code aint should get here");
-        }
-
-                /**
-            SetRandRange
-
-            Returns the total random range of a set of stochastic transitions.
-        */
-        public static double GetRandRange(IEnumerable<StochasticTransition> set){
-            double sum = 0;
-            foreach(var s in set){
-                sum += s;
+            double randTarget = new Random().NextDouble() * aggr;
+            aggr = 0;
+            foreach(var t in Transitions){
+                if (t.Value.Value > randTarget)
+                    return t.Value;
+                aggr += t.Value.Value;
             }
-            return sum;
+            throw new Exception("Bad Code Path! Random Didn't Work!");
         }
     }
 }
