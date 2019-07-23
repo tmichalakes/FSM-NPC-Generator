@@ -4,7 +4,7 @@ using FSM.States;
 using FSM.Transitions;
 
 namespace FSM.Triggers {
-    public class StochasticTrigger<S> : ITrigger<S,double>
+    public class StochasticTrigger<S> : EventArgs, ITrigger<S,double>
     {
         public Transition<S,double> Transition(Dictionary<string, Transition<S,double>> TransitionSet)
         {

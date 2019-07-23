@@ -4,7 +4,7 @@ using FSM.States;
 using FSM.Transitions;
 
 namespace FSM.Triggers {
-    public class NameTrigger<S,T> : ITrigger<S,T>
+    public class NameTrigger<S,T> : EventArgs, ITrigger<S,T> 
     {
         // key to look up
         private string name;
